@@ -11,10 +11,6 @@ builds:
   - id: github-actions
     env:
       - CGO_ENABLED=0
-    asmflags:
-      - all=-trimpath={{.Env.GOPATH}}
-    gcflags:
-      - all=-trimpath={{.Env.GOPATH}}
     goos:
       - linux
       - windows
