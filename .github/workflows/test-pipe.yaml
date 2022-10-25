@@ -46,4 +46,4 @@ jobs:
             ${{ runner.os }}-go-
       - name: Run tests
         run: |
-          make test
+          go test -v
