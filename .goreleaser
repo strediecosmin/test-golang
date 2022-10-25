@@ -39,7 +39,7 @@ changelog:
 
 dockers:
 - image_templates:
-  - "eu.gcr.io/coremaker/firstreleasetest:{{ .Tag }}"
+  - "europe-docker.pkg.dev/coremaker/firstreleasetest:{{ .Tag }}"
   dockerfile: Dockerfile
   use: buildx
   goos: linux
