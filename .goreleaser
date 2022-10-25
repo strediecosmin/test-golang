@@ -1,5 +1,7 @@
 # This is an example .goreleaser.yml file with some sensible defaults.
 # Make sure to check the documentation at https://goreleaser.com
+project_name: github-actions
+
 before:
   hooks:
     # You may remove this if you don't use go modules.
@@ -7,7 +9,6 @@ before:
     - go generate ./...
 builds:
   - id: github-actions
-    main: ./server/main.go
     env:
       - CGO_ENABLED=0
     asmflags:
@@ -35,7 +36,20 @@ changelog:
     exclude:
       - '^docs:'
       - '^test:'
-project_name: github-actions
-# modelines, feel free to remove those if you don't want/use them:
-# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
-# vim: set ts=2 sw=2 tw=0 fo=cnqoj
+
+dockers:
+- image_templates:
+  - "eu.gcr.io/coremaker/firstreleasetest:{{ .Tag }}"
+  dockerfile: Dockerfile
+  use: buildx
+  goos: linux
+  goarch: amd64
+  build_flag_templates:
+   - "--pull"
+   - "--build-arg=ARCH=linux/amd64"
+   - "--label=org.opencontainers.image.created={{ .Date }}"
+   - "--label=org.opencontainers.image.name={{ .ProjectName }}"
+   - "--label=org.opencontainers.image.revision={{ .FullCommit }}"
+   - "--label=org.opencontainers.image.version={{ .Version }}"
+   - "--label=org.opencontainers.image.source={{ .GitURL }}"
+   - "--platform=linux/amd64"
