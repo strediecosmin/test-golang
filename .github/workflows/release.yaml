@@ -26,6 +26,7 @@ jobs:
       - name: Login to Artifact registry
         uses: docker/login-action@v2
         with:
+          registry: europe-docker.pkg.dev
           username: _json_key
           password: ${{ secrets.GAR_JSON_KEY }}
       - uses: actions/checkout@v3
