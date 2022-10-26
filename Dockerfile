@@ -1,5 +1,7 @@
-FROM golang:1.18
+FROM golang:1.19
 WORKDIR /app
-COPY . /app
-# RUN go build
-# CMD "./github-actions"
+RUN ls -la
+COPY ./ ./
+RUN ls -la
+RUN go build
+CMD "./github-actions"

@@ -5,6 +5,8 @@ on:
     # run only against tags
     tags:
       - '*'
+  # pull_request:
+  #   # branches:
 
 permissions:
   contents: write
@@ -40,3 +42,7 @@ jobs:
           args: release --rm-dist
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+      - name: test
+        run: |
+          ls -la
+          pwd
