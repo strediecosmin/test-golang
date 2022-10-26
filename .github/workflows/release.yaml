@@ -14,6 +14,8 @@ permissions:
 jobs:
   goreleaser:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/setup-go@v3
         with:
@@ -33,6 +35,7 @@ jobs:
         with:
           fetch-depth: 0
       - run: git fetch --force --tags
+
       - name: Download release notes utility
         env:
           GH_REL_URL: https://github.com/buchanae/github-release-notes/releases/download/0.2.0/github-release-notes-linux-amd64-0.2.0.tar.gz
@@ -42,7 +45,7 @@ jobs:
         run: |
           NOTES="./output/notes.md"
           echo '## CLI Changelog' > ${NOTES}
-          github-release-notes -org coremaker -repo test-repo -since-latest-release -include-author >> ${NOTES}
+          github-release-notes -repo test-golang -since-latest-release -include-author >> ${NOTES}
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
 
