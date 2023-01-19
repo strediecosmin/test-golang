@@ -21,14 +21,5 @@ jobs:
       id: tag
       uses: anothrNick/github-tag-action@1.55.0 
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GH_PAT_GORELEASER }}
         WITH_V: true
-
-      # auto releases is not working atm and is deleting releases due branch tags
-    - name: automatic-draft-release
-      uses: marvinpinto/action-automatic-releases@v1.2.1
-      with:
-        draft: true
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        title: "${{ steps.tag.outputs.tag }}: [title-edit-me] by:${{ github.actor }}"
-        automatic_release_tag: ${{ steps.tag.outputs.new_tag }}
