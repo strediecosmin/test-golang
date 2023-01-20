@@ -1,9 +1,5 @@
-# example 1: on push to master
 name: Bump version
 on:
-  # push:
-  #   branches:
-  #     - main
   pull_request:
     types:
       - closed
@@ -11,7 +7,7 @@ on:
       - main
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
       with:
