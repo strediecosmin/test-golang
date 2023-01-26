@@ -15,23 +15,23 @@ builds:
       - linux
       - windows
       - darwin
-archives:
-  - replacements:
-      darwin: Darwin
-      linux: Linux
-      windows: Windows
-      386: i386
-      amd64: x86_64
-checksum:
-  name_template: 'checksums.txt'
-snapshot:
-  name_template: "{{ incpatch .Version }}-next"
-changelog:
-  sort: asc
-  filters:
-    exclude:
-      - '^docs:'
-      - '^test:'
+# archives:
+#   - replacements:
+#       darwin: Darwin
+#       linux: Linux
+#       windows: Windows
+#       386: i386
+#       amd64: x86_64
+# checksum:
+#   name_template: 'checksums.txt'
+# snapshot:
+#   name_template: "{{ incpatch .Version }}-next"
+# changelog:
+#   sort: asc
+#   filters:
+#     exclude:
+#       - '^docs:'
+#       - '^test:'
 
 dockers:
 - image_templates:
@@ -50,3 +50,7 @@ dockers:
    - "--label=org.opencontainers.image.version={{ .Version }}"
    - "--label=org.opencontainers.image.source={{ .GitURL }}"
    - "--platform=linux/amd64"
+
+publish:
+- provider: github
+  release: true
