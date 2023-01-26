@@ -51,6 +51,6 @@ dockers:
    - "--label=org.opencontainers.image.source={{ .GitURL }}"
    - "--platform=linux/amd64"
 
-publish:
-- provider: github
-  release: true
+# publish:
+# - provider: github
+#   release: true
