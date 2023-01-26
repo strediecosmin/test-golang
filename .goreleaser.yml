@@ -13,8 +13,8 @@ builds:
       - CGO_ENABLED=0
     goos:
       - linux
-      - windows
-      - darwin
+      # - windows
+      # - darwin
 # archives:
 #   - replacements:
 #       darwin: Darwin
@@ -51,6 +51,5 @@ dockers:
    - "--label=org.opencontainers.image.source={{ .GitURL }}"
    - "--platform=linux/amd64"
 
-# publish:
-# - provider: github
-#   release: true
+release:
+  skip_upload: true
